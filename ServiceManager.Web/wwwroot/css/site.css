@@ -1,0 +1,7 @@
+﻿.validation-summary-errors, .field-validation-error {
+    color: #f14668;
+}
+
+.flex-align-items-start {
+    align-items: start !important;
+}

@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ServiceManager.Web</title>
+
+    <link href="~/lib/bulma/css/bulma.min.css" rel="stylesheet" />
+
+    @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />*@
+    <link rel="stylesheet" href="~/css/site.css" />
+
+    <style>
+        .nav-wrapper {
+            background-color: #850000 !important;
+            font-size: 14px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="fb-root"></div>
+    <script>
+        //window.fbAsyncInit = function () {
+        //    FB.init({
+        //        appId: '374694706952292',
+        //        cookie: true,
+        //        xfbml: true,
+        //        version: '10.0'
+        //    });
+
+        //    FB.AppEvents.logPageView();
+
+        //};
+
+        //(function (d, s, id) {
+        //    var js, fjs = d.getElementsByTagName(s)[0];
+        //    if (d.getElementById(id)) { return; }
+        //    js = d.createElement(s); js.id = id;
+        //    js.src = "https://connect.facebook.net/en_US/sdk.js";
+        //    fjs.parentNode.insertBefore(js, fjs);
+        //}(document, 'script', 'facebook-jssdk'));
+
+        //FB.getLoginStatus(function (response) {
+        //    if (response.status === 'connected') {
+        //        console.log(response.authResponse.accessToken);
+        //    }
+        //});
+
+    </script>
+    @*<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v10.0&appId=374694706952292&autoLogAppEvents=1" nonce="uHRKv5PM"></script>*@
+
+    <section class="hero is-fullheight">
+        <!-- Hero content: will be in the middle -->
+        <div class="hero-body">
+            <div class="container">
+                @RenderBody()
+
+                <!-- Button -->
+                @*<div class="fb-login-button" data-width="" data-size="large" data-button-type="continue_with" data-layout="default" data-auto-logout-link="true" data-use-continue-as="true"></div>*@
+            </div>
+        </div>
+    </section>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/fontawesome/font-awesome.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

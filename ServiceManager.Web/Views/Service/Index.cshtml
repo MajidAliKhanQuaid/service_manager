@@ -1,0 +1,122 @@
+﻿@model IEnumerable<ServiceManager.Common.Models.SystemService>
+
+<div class="columns">
+    <div class="column">
+        <a class="button is-link is-pulled-left" asp-action="Create">New Service</a>
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Service</th>
+            <th>Status</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var service in Model)
+        {
+            <tr>
+                <td>@(service.Name)</td>
+                <td>
+                    @{
+                        var serviceStatus = ServiceManager.Web.UiHelpers.EnumHelper<ServiceManager.Common.Models.ServiceStatus>.GetDisplayValue(service.ServiceStatus);
+                    }
+                    @switch (service.ServiceStatus)
+                    {
+                        case ServiceManager.Common.Models.ServiceStatus.StartPending:
+                        case ServiceManager.Common.Models.ServiceStatus.Running:
+                            <text>
+                                <span class="tag is-success">
+                                    @(serviceStatus)
+                                </span>
+                            </text>
+                            break;
+                        case ServiceManager.Common.Models.ServiceStatus.StopPending:
+                        case ServiceManager.Common.Models.ServiceStatus.Stopped:
+                            <text>
+                                <span class="tag is-danger">
+                                    @(serviceStatus)
+                                </span>
+                            </text>
+                            break;
+                        default:
+                            <text>
+                                <span class="tag is-warning">
+                                    @(serviceStatus)
+                                </span>
+                            </text>
+                            break;
+                    }
+
+                </td>
+                <td><button class="button is-success btn-start-service" service-id="@service.Id"><i class="far fa-play-circle"></i></button></td>
+                <td><button class="button is-danger btn-stop-service" service-id="@service.Id"><i class="far fa-stop-circle"></i></button></td>
+                <td><a class="button is-success btn-edit-service" asp-action="Edit" asp-route-id="@service.Id"><i class="fas fa-edit"></i></a></td>
+                <td><a class="button is-danger btn-delete-service" asp-action="Delete" asp-route-id="@service.Id"><i class="far fa-trash-alt"></i></a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts{
+    <script>
+    $(document).ready(function () {
+        $(".btn-start-service").click(function (e) {
+                            var serviceId = e.currentTarget.getAttribute("service-id");
+                            console.log("Btn Start Service - Request", serviceId);
+                            console.log("This is this ", this);
+                            console.log("This is event ", e);
+                            if (serviceId) {
+                                console.log("Btn Start Service - Service Id is Valid Sending Ajax Request", serviceId);
+                $.ajax({
+                                    url: '@Url.Action("Start","Service")',
+                    method: 'POST',
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ ServiceId: serviceId }),
+                    success: function (_response) {
+                                        console.log("*** Start Service ***");
+                                        console.log("Got Success Response ", _response);
+                                    },
+                    error: function (_error) {
+                                        console.log("*** Start Service ***");
+                                        console.log("Got Error Response", _error);
+                                    }
+                                });
+            }
+        });
+        $(".btn-stop-service").click(function (e) {
+            var serviceId = e.currentTarget.getAttribute("service-id");
+            console.log("Btn Stop Service - Request", serviceId);
+            if (serviceId) {
+                console.log("Btn Stop Service - Service Id is Valid Sending Ajax Request", serviceId);
+                console.log("This is this ", this);
+                console.log("This is event ", e);
+                $.ajax({
+                    url: '@Url.Action("Stop","Service")',
+                    method: 'POST',
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ ServiceId: serviceId }),
+                    success: function (_response) {
+                        console.log("*** Stop Service ***");
+                        console.log("Got Success Response ", _response);
+                    },
+                    error: function (_error) {
+                        console.log("*** Stop Service ***");
+                        console.log("Got Error Response", _error);
+                    }
+                });
+            }
+        });
+    });
+    </script>
+}
+
+<progress class="progress is-small is-primary" max="100">15%</progress>
+<progress class="progress is-danger" max="100">30%</progress>
+<progress class="progress is-medium is-dark" max="100">45%</progress>
+<progress class="progress is-large is-info" max="100">60%</progress>

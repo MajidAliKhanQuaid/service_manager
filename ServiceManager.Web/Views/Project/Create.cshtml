@@ -1,0 +1,40 @@
+﻿@model ProjectViewModel
+
+    @*<script src="~/lib/select-pure/bundle.min.js"></script>*@
+    @using (Html.BeginForm(FormMethod.Post))
+    {
+
+        @Html.ValidationSummary()
+
+        <div class="field">
+            @Html.LabelFor(x => x.Name)
+            <div class="control">
+                @Html.TextBoxFor(x => x.Name, string.Empty, new { @class = "input is-link" })
+                @Html.ValidationMessageFor(x => x.Name)
+            </div>
+        </div>
+
+        <div class="field">
+            @Html.LabelFor(x => x.Description)
+            <div class="control">
+                @Html.TextBoxFor(x => x.Description, string.Empty, new { @class = "input is-link" })
+                @Html.ValidationMessageFor(x => x.Description)
+            </div>
+        </div>
+
+        <div class="field">
+            <a asp-action="Index" class="button is-link is-pulled-right ml-4">Cancel</a>
+            <input type="submit" class="button is-link is-pulled-right" value="Save" />
+        </div>
+    }
+
+@*@section Scripts{ 
+    <script>
+        $(document).ready(function () {
+            var instance = new SelectPure(".example", {
+                options: myOptions,
+                value: ["NY", "CA"]
+            });
+        });
+    </script>
+}*@

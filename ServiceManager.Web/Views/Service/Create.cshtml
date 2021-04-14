@@ -1,0 +1,48 @@
+﻿@model ServiceManager.Web.ViewModels.SystemServiceViewModel
+
+@using (Html.BeginForm(FormMethod.Post))
+{
+
+    @Html.ValidationSummary()
+
+    <div class="field">
+        @Html.LabelFor(x => x.Name)
+        <div class="control">
+            @Html.TextBoxFor(x => x.Name, string.Empty, new { @class = "input is-link" })
+            @Html.ValidationMessageFor(x => x.Name)
+        </div>
+    </div>
+
+    <div class="field">
+        @Html.LabelFor(x => x.Description)
+        <div class="control">
+            @Html.TextAreaFor(x => x.Description, 3, 12, new { @class = "input is-link" })
+            @Html.ValidationMessageFor(x => x.Description)
+        </div>
+    </div>
+
+    <div class="field">
+        @Html.LabelFor(x => x.ProjectId)
+        <div class="control">
+            <div class="select">
+                @Html.DropDownListFor(x => x.ProjectId, ViewBag.Projects as List<SelectListItem>, new { @class = "input select is-link" })
+            </div>
+            @Html.ValidationMessageFor(x => x.ProjectId)
+        </div>
+    </div>
+
+    <div class="field">
+        @Html.LabelFor(x => x.MachineId)
+        <div class="control">
+            <div class="select">
+                @Html.DropDownListFor(x => x.MachineId, ViewBag.Machines as List<SelectListItem>, new { @class = "input select is-link" })
+            </div>
+            @Html.ValidationMessageFor(x => x.MachineId)
+        </div>
+    </div>
+
+    <div class="field">
+        <a asp-action="Index" class="button is-link is-pulled-right ml-4">Cancel</a>
+        <input type="submit" class="button is-link is-pulled-right" value="Save" />
+    </div>
+}

@@ -1,0 +1,47 @@
+﻿@model MachineViewModel
+
+@using (Html.BeginForm(FormMethod.Post))
+{
+
+    @Html.ValidationSummary()
+    @Html.HiddenFor(x => x.Id)
+
+    <div class="field">
+        @Html.LabelFor(x => x.Name)
+        <div class="control">
+            @Html.TextBoxFor(x => x.Name, string.Empty, new { @class = "input is-link" })
+            @Html.ValidationMessageFor(x => x.Name)
+        </div>
+    </div>
+
+    <div class="field">
+        @Html.LabelFor(x => x.Specs)
+        <div class="control">
+            @Html.TextBoxFor(x => x.Specs, string.Empty, new { @class = "input is-link" })
+            @Html.ValidationMessageFor(x => x.Specs)
+        </div>
+    </div>
+
+    <div class="field">
+        @Html.LabelFor(x => x.Identifier)
+        <div class="control">
+            @Html.TextBoxFor(x => x.Identifier, string.Empty, new { @class = "input is-link" })
+            @Html.ValidationMessageFor(x => x.Identifier)
+        </div>
+    </div>
+
+    @*<div class="field">
+        @Html.LabelFor(x => x.ServiceIds)
+        <div class="control">
+            <div class="select is-multiline">
+                @Html.DropDownListFor(x => x.ServiceIds, Model.Services, new { @class = "input is-link", @multiple = "multiple" })
+            </div>
+            @Html.ValidationMessageFor(x => x.ServiceIds)
+        </div>
+    </div>*@
+
+    <div class="field">
+        <a asp-action="Index" class="button is-link is-pulled-right ml-4">Cancel</a>
+        <input type="submit" class="button is-link is-pulled-right" value="Save" />
+    </div>
+}

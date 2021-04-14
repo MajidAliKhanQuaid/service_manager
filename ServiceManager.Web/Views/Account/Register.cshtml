@@ -1,0 +1,87 @@
+﻿@model ServiceManager.Web.ViewModels.RegisterViewModel
+
+@using (Html.BeginForm(FormMethod.Post))
+{
+    @Html.ValidationSummary()
+    <div class="field">
+        @Html.LabelFor(x => x.FirstName)
+        <div class="control">
+            @Html.TextBoxFor(x => x.FirstName, new { @class = "input is-link" })
+            @Html.ValidationMessageFor(x => x.FirstName)
+        </div>
+    </div>
+    <div class="field">
+        @Html.LabelFor(x => x.LastName)
+        <div class="control">
+            @Html.TextBoxFor(x => x.LastName, new { @class = "input is-link" })
+            @Html.ValidationMessageFor(x => x.LastName)
+        </div>
+    </div>
+    @*<div class="field">
+            @Html.LabelFor(x => x.Project)
+            <div class="control">
+                @Html.TextBoxFor(x => x.Project, new { @class = "input is-link" })
+                @Html.ValidationMessageFor(x => x.Project)
+            </div>
+        </div>*@
+    <div class="field">
+        @Html.LabelFor(x => x.UserName)
+        <div class="control">
+            @Html.TextBoxFor(x => x.UserName, new { @class = "input is-link" })
+            @Html.ValidationMessageFor(x => x.UserName)
+        </div>
+    </div>
+    <div class="field">
+        @Html.LabelFor(x => x.Email)
+        <div class="control">
+            @Html.TextBoxFor(x => x.Email, new { @class = "input is-link" })
+            @Html.ValidationMessageFor(x => x.Email)
+        </div>
+    </div>
+    <div class="field">
+        @Html.LabelFor(x => x.Password)
+        <div class="control">
+            @Html.PasswordFor(x => x.Password, new { @class = "input is-link" })
+            @Html.ValidationMessageFor(x => x.Password)
+        </div>
+    </div>
+
+    <div class="field">
+        @Html.LabelFor(x => x.Team)
+        <div class="control">
+            @Html.TextBoxFor(x => x.Team, new { @class = "input is-link" })
+            @Html.ValidationMessageFor(x => x.Team)
+        </div>
+    </div>
+
+    <div class="field">
+        @Html.LabelFor(x => x.Status)
+        <div class="control">
+            @Html.TextBoxFor(x => x.Status, new { @class = "input is-link" })
+            @Html.ValidationMessageFor(x => x.Status)
+        </div>
+    </div>
+
+    <div class="field">
+        @Html.LabelFor(x => x.Designation)
+        <div class="control">
+            @Html.TextBoxFor(x => x.Designation, new { @class = "input is-link" })
+            @Html.ValidationMessageFor(x => x.Designation)
+        </div>
+    </div>
+
+    <div class="field">
+        @Html.LabelFor(x => x.ProjectIds)
+        <div class="control">
+            <div class="select is-multiline">
+                @Html.DropDownListFor(x => x.ProjectIds, ViewBag.Projects as IEnumerable<SelectListItem>, new { @class = "input is-link", @multiple = "multiple" })
+            </div>
+            @Html.ValidationMessageFor(x => x.ProjectIds)
+        </div>
+    </div>
+
+    <div class="field">
+        <a asp-action="Index" class="button is-link is-pulled-right ml-4">Cancel</a>
+        <input type="submit" class="button is-link is-pulled-right" value="Save" />
+    </div>
+}

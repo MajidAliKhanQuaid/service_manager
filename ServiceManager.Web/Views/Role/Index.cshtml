@@ -1,0 +1,35 @@
+﻿@model IEnumerable<RoleViewModel>
+
+
+    <div class="columns">
+        <div class="column">
+            <a class="button is-link is-pulled-left" asp-action="Create">New Role</a>
+        </div>
+    </div>
+
+    <div class="columns">
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var role in Model)
+                {
+                    <tr>
+                        <td>1</td>
+                        <td>@(role.Name)</td>
+                        <td>@(role.Description)</td>
+                        <td><a class="button is-link" asp-action="Edit" asp-route-id="@role.Id.ToString()">Edit</a></td>
+                        <td><a class="button is-link" asp-action="Edit" asp-route-id="@role.Id.ToString()">Delete</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>

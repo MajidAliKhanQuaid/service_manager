@@ -1,0 +1,52 @@
+﻿@model ServiceManager.Web.ViewModels.ProfileViewModel
+
+@using (Html.BeginForm(FormMethod.Post))
+{
+    @Html.ValidationSummary()
+
+    @Html.HiddenFor(x => x.Id)
+
+    <div class="field">
+        @Html.LabelFor(x => x.FirstName)
+        <div class="control">
+            @Html.TextBoxFor(x => x.FirstName, new { @class = "input is-link" })
+            @Html.ValidationMessageFor(x => x.FirstName)
+        </div>
+    </div>
+    <div class="field">
+        @Html.LabelFor(x => x.LastName)
+        <div class="control">
+            @Html.TextBoxFor(x => x.LastName, new { @class = "input is-link" })
+            @Html.ValidationMessageFor(x => x.LastName)
+        </div>
+    </div>
+    
+    <div class="field">
+        @Html.LabelFor(x => x.Team)
+        <div class="control">
+            @Html.TextBoxFor(x => x.Team, new { @class = "input is-link" })
+            @Html.ValidationMessageFor(x => x.Team)
+        </div>
+    </div>
+
+    <div class="field">
+        @Html.LabelFor(x => x.Status)
+        <div class="control">
+            @Html.TextBoxFor(x => x.Status, new { @class = "input is-link" })
+            @Html.ValidationMessageFor(x => x.Status)
+        </div>
+    </div>
+
+    <div class="field">
+        @Html.LabelFor(x => x.Designation)
+        <div class="control">
+            @Html.TextBoxFor(x => x.Designation, new { @class = "input is-link" })
+            @Html.ValidationMessageFor(x => x.Designation)
+        </div>
+    </div>
+
+    <div class="field">
+        <a asp-action="Index" class="button is-link is-pulled-right ml-4">Cancel</a>
+        <input type="submit" class="button is-link is-pulled-right" value="Save" />
+    </div>
+}

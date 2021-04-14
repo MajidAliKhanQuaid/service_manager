@@ -1,0 +1,87 @@
+﻿@model IEnumerable<ServiceManager.Web.ViewModels.MachineViewModel>
+
+<div class="columns">
+    <div class="column">
+        <a class="button is-link is-pulled-left" asp-action="Create">New Machine</a>
+    </div>
+</div>
+
+<nav class="pagination" role="navigation" aria-label="pagination">
+    <a class="pagination-previous" title="This is the first page" disabled>Previous</a>
+    <a class="pagination-next">Next page</a>
+    <ul class="pagination-list">
+        <li>
+            <a class="pagination-link is-current" aria-label="Page 1" aria-current="page">1</a>
+        </li>
+        <li>
+            <a class="pagination-link" aria-label="Goto page 2">2</a>
+        </li>
+        <li>
+            <a class="pagination-link" aria-label="Goto page 3">3</a>
+        </li>
+    </ul>
+</nav>
+
+@*@await Component.InvokeAsync("LastServiceUpdate")*@
+@{
+    int cardsInRow = 3;
+    int columnCounter = 1;
+}
+
+@foreach (var machine in Model)
+{
+    @if (columnCounter == 1)
+    {
+        @:<div class="columns">
+        }
+
+    <text>
+        <div class="column">
+                <div class="card">
+                    <header class="card-header">
+                        <p class="card-header-title">
+                            @(machine.Name)
+                        </p>
+                        <button class="button is-white card-header-icon" aria-label="more options">
+                            <span class="icon">
+                                <i class="fas fa-angle-down" aria-hidden="true"></i>
+                            </span>
+                        </button>
+                    </header>
+                    <div class="card-content">
+                        <div class="content">
+                            <div class="mb-2">@(machine.Specs)</div>
+                            <div>
+                                @{
+                                    var lstServiceNames = machine.Services?.Select(x => "<span class='tag'>" + x.Text + "</span>")?.ToList() ?? new List<string>();
+                                    var serviceNames = string.Join(' ', lstServiceNames);
+                                }
+                                @(Html.Raw(serviceNames))
+                            </div>
+                        </div>
+                    </div>
+                    <footer class="card-footer">
+                        <a asp-controller="Machine" asp-action="Details" asp-route-id="@machine.Id.ToString()" class="card-footer-item">Details</a>
+                        <a asp-controller="Machine" asp-action="Edit" asp-route-id="@machine.Id.ToString()" class="card-footer-item">Edit</a>
+                        <a asp-controller="Machine" asp-action="Delete" asp-route-id="@machine.Id.ToString()" class="card-footer-item">Delete</a>
+                    </footer>
+                </div>
+        </div>
+    </text>
+
+    @if (columnCounter == cardsInRow || Model.Last() == machine)
+    {
+        for (var i = 0; i < cardsInRow - columnCounter; i++)
+        {
+            @:<div class="column"></div>
+        }
+    @:</div>
+}
+
+    columnCounter += 1;
+
+    @if (columnCounter > cardsInRow)
+    {
+        columnCounter = 1;
+    }
+}

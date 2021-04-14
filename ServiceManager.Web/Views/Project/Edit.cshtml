@@ -1,0 +1,29 @@
+﻿@model ProjectViewModel
+
+@using (Html.BeginForm(FormMethod.Post))
+{
+
+    @Html.ValidationSummary()
+    @Html.HiddenFor(x => x.Id)
+
+    <div class="field">
+        @Html.LabelFor(x => x.Name)
+        <div class="control">
+            @Html.TextBoxFor(x => x.Name, string.Empty, new { @class = "input is-link" })
+            @Html.ValidationMessageFor(x => x.Name)
+        </div>
+    </div>
+
+    <div class="field">
+        @Html.LabelFor(x => x.Description)
+        <div class="control">
+            @Html.TextBoxFor(x => x.Description, string.Empty, new { @class = "input is-link" })
+            @Html.ValidationMessageFor(x => x.Description)
+        </div>
+    </div>
+
+    <div class="field">
+        <a asp-action="Index" class="button is-link is-pulled-right ml-4">Cancel</a>
+        <input type="submit" class="button is-link is-pulled-right" value="Save" />
+    </div>
+}
