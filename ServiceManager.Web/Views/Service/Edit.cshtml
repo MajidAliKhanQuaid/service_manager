@@ -1,5 +1,9 @@
 ﻿@model ServiceManager.Web.ViewModels.SystemServiceViewModel
 
+@section Styles {
+    <link href="~/css/service/edit.css" rel="stylesheet" />
+}
+
 @using (Html.BeginForm(FormMethod.Post))
 {
     @Html.HiddenFor(x => x.Id)
@@ -37,7 +41,7 @@
     </div>
 
     <div class="field">
-        <a asp-action="Index" class="button is-link is-pulled-right ml-4">Cancel</a>
-        <input type="submit" class="button is-link is-pulled-right" value="Save" />
+        <a asp-action="Index" class="btn">Cancel</a>
+        <input type="submit" class="btn" value="Save" />
     </div>
 }

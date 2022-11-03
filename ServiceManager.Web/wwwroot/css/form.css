@@ -1,0 +1,59 @@
+﻿:root {
+    --theme-color: #000000;
+    --font-color: #000000;
+    --background-color: lightgray;
+    --focus-color: red;
+    --default-margin: 15px;
+    --default-padding: 15px;
+    --default-font-size: 15px;
+}
+
+.field {
+    margin: var(--default-margin);
+}
+
+    .field label {
+        padding-right: var(--default-padding);
+        font-weight: bold;
+    }
+
+    .field input.input:not([type="checkbox"]):not([type="radio"]),
+    .field textarea.input,
+    .field select.input {
+        width: calc(100% - 30px);
+        outline: none;
+        padding: var(--default-padding);
+        font-size: var(--default-font-size);
+        border: none;
+        border-top: 1px solid var(--theme-color);
+        border-left: 1px solid var(--theme-color);
+        border-radius: 5px;
+        box-shadow: 5px 5px 5px var(--theme-color);
+    }
+
+        .field input.input:not([type="checkbox"]):not([type="radio"]):focus,
+        .field textarea.input:focus,
+        .field select.input:focus {
+            border-top-color: var(--focus-color);
+            border-left-color: var(--focus-color);
+            box-shadow: 5px 5px var(--focus-color);
+        }
+
+.btn,
+.btn:visited {
+    background-color: var(--background-color);
+    border: none;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px var(--theme-color);
+    color: var(--font-color);
+    display: inline-block;
+    font-size: var(--default-font-size);
+    font-weight: bold;
+    text-decoration: none;
+    padding: 5px 15px;
+}
+
+    .btn:active {
+        box-shadow: 2px 2px 2px var(--focus-color);
+        color: var(--focus-color);
+    }

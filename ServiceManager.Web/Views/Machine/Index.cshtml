@@ -1,8 +1,15 @@
 ﻿@model IEnumerable<ServiceManager.Web.ViewModels.MachineViewModel>
 
+@section Styles {
+    <style>
+        .card {
+        }
+    </style>
+}
+
 <div class="columns">
     <div class="column">
-        <a class="button is-link is-pulled-left" asp-action="Create">New Machine</a>
+        <a class="btn" asp-action="Create">New Machine</a>
     </div>
 </div>
 
@@ -22,66 +29,36 @@
     </ul>
 </nav>
 
-@*@await Component.InvokeAsync("LastServiceUpdate")*@
-@{
-    int cardsInRow = 3;
-    int columnCounter = 1;
-}
 
-@foreach (var machine in Model)
-{
-    @if (columnCounter == 1)
-    {
-        @:<div class="columns">
-        }
+<table class="table">
+    <thead>
+        <tr>
+            <th>Machine</th>
+            <th>Specs</th>
+            <th>Services</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
 
-    <text>
-        <div class="column">
-                <div class="card">
-                    <header class="card-header">
-                        <p class="card-header-title">
-                            @(machine.Name)
-                        </p>
-                        <button class="button is-white card-header-icon" aria-label="more options">
-                            <span class="icon">
-                                <i class="fas fa-angle-down" aria-hidden="true"></i>
-                            </span>
-                        </button>
-                    </header>
-                    <div class="card-content">
-                        <div class="content">
-                            <div class="mb-2">@(machine.Specs)</div>
-                            <div>
-                                @{
-                                    var lstServiceNames = machine.Services?.Select(x => "<span class='tag'>" + x.Text + "</span>")?.ToList() ?? new List<string>();
-                                    var serviceNames = string.Join(' ', lstServiceNames);
-                                }
-                                @(Html.Raw(serviceNames))
-                            </div>
-                        </div>
-                    </div>
-                    <footer class="card-footer">
-                        <a asp-controller="Machine" asp-action="Details" asp-route-id="@machine.Id.ToString()" class="card-footer-item">Details</a>
-                        <a asp-controller="Machine" asp-action="Edit" asp-route-id="@machine.Id.ToString()" class="card-footer-item">Edit</a>
-                        <a asp-controller="Machine" asp-action="Delete" asp-route-id="@machine.Id.ToString()" class="card-footer-item">Delete</a>
-                    </footer>
-                </div>
-        </div>
-    </text>
-
-    @if (columnCounter == cardsInRow || Model.Last() == machine)
-    {
-        for (var i = 0; i < cardsInRow - columnCounter; i++)
+    <tbody>
+        @foreach (var machine in Model)
         {
-            @:<div class="column"></div>
+            <tr class="column">
+                <td>@(machine.Name)</td>
+                <td>@(machine.Specs)</td>
+                <td>
+                    @{
+                        var lstServiceNames = machine.Services?.Select(x => "<span class='tag'>" + x.Text + "</span>")?.ToList() ?? new List<string>();
+                        var serviceNames = string.Join(' ', lstServiceNames);
+                    }
+                    @(Html.Raw(serviceNames))
+                </td>
+                <td>
+                    <a asp-controller="Machine" asp-action="Details" asp-route-id="@machine.Id.ToString()" class="btn">Details</a>
+                    <a asp-controller="Machine" asp-action="Edit" asp-route-id="@machine.Id.ToString()" class="btn">Edit</a>
+                    <a asp-controller="Machine" asp-action="Delete" asp-route-id="@machine.Id.ToString()" class="btn">Delete</a>
+                </td>
+            </tr>
         }
-    @:</div>
-}
-
-    columnCounter += 1;
-
-    @if (columnCounter > cardsInRow)
-    {
-        columnCounter = 1;
-    }
-}
+    </tbody>
+</table>

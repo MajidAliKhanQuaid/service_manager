@@ -2,7 +2,7 @@
 
 <div class="columns">
     <div class="column">
-        <a class="button is-link is-pulled-left" asp-action="Register">New User</a>
+        <a class="btn" asp-action="Register">New User</a>
     </div>
 </div>
 
@@ -26,8 +26,8 @@
                     <td>@(user.FirstName) @(user.LastName)</td>
                     <td>@(user.Email)</td>
                     <td>@(user.UserName)</td>
-                    <td><a class="button is-link" asp-action="Edit" asp-route-id="@user.Id.ToString()">Edit</a></td>
-                    <td><a class="button is-link" asp-action="Edit" asp-route-id="@user.Id.ToString()">Delete</a></td>
+                    <td><a class="btn" asp-action="Edit" asp-route-id="@user.Id.ToString()">Edit</a></td>
+                    <td><a class="btn" asp-action="Edit" asp-route-id="@user.Id.ToString()">Delete</a></td>
                 </tr>
             }
         </tbody>

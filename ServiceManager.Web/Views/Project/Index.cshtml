@@ -2,7 +2,7 @@
 
 <div class="columns">
     <div class="column">
-        <a class="button is-link is-pulled-left" asp-action="Create">New Project</a>
+        <a class="btn" asp-action="Create">New Project</a>
     </div>
 </div>
 
@@ -22,65 +22,26 @@
     </ul>
 </nav>
 
-@*@await Component.InvokeAsync("LastServiceUpdate")*@
-@{
-    int cardsInRow = 3;
-    int columnCounter = 1;
-}
-
-@foreach (var project in Model)
-{
-    @if (columnCounter == 1)
-    {
-        @:<div class="columns">
-        }
-    <text>
-        <div class="column">
-            <div class="card">
-                <header class="card-header">
-                    <p class="card-header-title">
-                        @(project.Name)
-                    </p>
-                    <button class="button is-white card-header-icon" aria-label="more options">
-                        <span class="icon">
-                            <i class="fas fa-angle-down" aria-hidden="true"></i>
-                        </span>
-                    </button>
-                </header>
-                <div class="card-content">
-                    <div class="content">
-                        <div class="mb-2">@(project.Description)</div>
-                        <div>
-                            @{
-                                var lstServiceNames = project.Services?.Select(x => "<span class='tag'>" + x.Name + "</span>")?.ToList() ?? new List<string>();
-                                var serviceNames = string.Join(' ', lstServiceNames);
-                            }
-                            @(Html.Raw(serviceNames))
-                        </div>
-                    </div>
-                </div>
-                <footer class="card-footer">
-                    <a asp-controller="Project" asp-action="Details" asp-route-id="@project.Id.ToString()" class="card-footer-item">Details</a>
-                    <a asp-controller="Project" asp-action="Edit" asp-route-id="@project.Id.ToString()" class="card-footer-item">Edit</a>
-                    <a asp-controller="Project" asp-action="Delete" asp-route-id="@project.Id.ToString()" class="card-footer-item">Delete</a>
-                </footer>
-            </div>
-        </div>
-    </text>
-
-    @if (columnCounter == cardsInRow || Model.Last() == project)
-    {
-        for (var i = 0; i < cardsInRow - columnCounter; i++)
+<table class="table">
+    <thead>
+        <tr>
+            <th>Project</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var project in Model)
         {
-            @:<div class="column"></div>
+            <tr class="column">
+                <td>@(project.Name)</td>
+                <td>@(project.Name)</td>
+                <td>
+                    <a asp-controller="Project" asp-action="Details" asp-route-id="@project.Id.ToString()" class="btn">Details</a>
+                    <a asp-controller="Project" asp-action="Edit" asp-route-id="@project.Id.ToString()" class="btn">Edit</a>
+                    <a asp-controller="Project" asp-action="Delete" asp-route-id="@project.Id.ToString()" class="btn">Delete</a>
+                </td>
+            </tr>
         }
-    @:</div>
-}
-
-    columnCounter += 1;
-
-    @if (columnCounter > cardsInRow)
-    {
-        columnCounter = 1;
-    }
-}
+    </tbody>
+</table>

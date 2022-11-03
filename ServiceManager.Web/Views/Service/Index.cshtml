@@ -2,7 +2,7 @@
 
 <div class="columns">
     <div class="column">
-        <a class="button is-link is-pulled-left" asp-action="Create">New Service</a>
+        <a class="btn" asp-action="Create">New Service</a>
     </div>
 </div>
 
@@ -11,8 +11,7 @@
         <tr>
             <th>Service</th>
             <th>Status</th>
-            <th></th>
-            <th></th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -52,10 +51,12 @@
                     }
 
                 </td>
-                <td><button class="button is-success btn-start-service" service-id="@service.Id"><i class="far fa-play-circle"></i></button></td>
-                <td><button class="button is-danger btn-stop-service" service-id="@service.Id"><i class="far fa-stop-circle"></i></button></td>
-                <td><a class="button is-success btn-edit-service" asp-action="Edit" asp-route-id="@service.Id"><i class="fas fa-edit"></i></a></td>
-                <td><a class="button is-danger btn-delete-service" asp-action="Delete" asp-route-id="@service.Id"><i class="far fa-trash-alt"></i></a></td>
+                <td>
+                    <button class="btn btn-start-service" service-id="@service.Id"><i class="far fa-play-circle"></i></button>
+                    <button class="btn btn-stop-service" service-id="@service.Id"><i class="far fa-stop-circle"></i></button>
+                    <a class="btn" asp-action="Edit" asp-route-id="@service.Id"><i class="fas fa-edit"></i></a>
+                    <a class="btn" asp-action="Delete" asp-route-id="@service.Id"><i class="far fa-trash-alt"></i></a>
+                </td>
             </tr>
         }
     </tbody>
@@ -115,8 +116,3 @@
     });
     </script>
 }
-
-<progress class="progress is-small is-primary" max="100">15%</progress>
-<progress class="progress is-danger" max="100">30%</progress>
-<progress class="progress is-medium is-dark" max="100">45%</progress>
-<progress class="progress is-large is-info" max="100">60%</progress>
