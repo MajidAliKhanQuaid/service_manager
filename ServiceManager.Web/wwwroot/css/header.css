@@ -12,17 +12,19 @@ nav .menu-container {
 nav {
     display: flex;
     justify-content: space-between;
-    background-color: black;
 }
 
     /* hero section */
 
     nav .hero {
+        display: flex;
+        justify-content: center;
+        max-height: 35px;
         width: var(--nav-item-width);
-        background-image: url("/images/logo.png");
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: center;
+    }
+
+    nav .hero img {
+        height: 100%;
     }
 
 /* navigation */

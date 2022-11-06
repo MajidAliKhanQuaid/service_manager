@@ -1,10 +1,34 @@
-﻿<section class="hero is-link">
-    <div class="hero-body">
-        <p class="title">
-            Link hero
-        </p>
-        <p class="subtitle">
-            Link subtitle
-        </p>
-    </div>
-</section>
+﻿<div>
+	<h1>Service Manager</h1>
+	<p>Service Manager app lets you manage your Windows Services from the web.</p>
+	<p>Steps to monitor a service</p>
+	<ul>
+		<li>
+			Build the ServiceManager.WindowsService project, this project will act as a monitor/update service
+		</li>
+		<li>
+			Create the service for monitoring using the .exe file i.e.
+			sc create WebServiceMonitor BinPath=C:\Path\ServiceManager.WindowsService.exe
+		</li>
+		<li>
+			The update/monitor service will post updates to changes in service state in database i.e. running, stopped, not found etc.
+		</li>
+		<li>
+			You can monitor an existing service or a custom windows service (created by you)
+		</li>
+		<li>
+			In case you want to create a new windows service, you can create it like that
+			Create a windows service i.e.
+			sc create ABC BinPath=C:\TempServices\ABC\ServiceManager.Service.exe
+		</li>
+		<li>
+			Now, click on 'New Service' button and add a new service
+		</li>
+		<li>
+			Click on 'New Service' button and add a new service
+		</li>
+		<li>
+			Every one minute, the changes to service states will reflect on the UI
+		</li>
+	</ul>
+</div>

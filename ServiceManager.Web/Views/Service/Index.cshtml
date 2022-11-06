@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ServiceManager.Common.Models.SystemService>
+﻿@model IEnumerable<SystemService>
 
 <div class="columns">
     <div class="column">
@@ -21,29 +21,29 @@
                 <td>@(service.Name)</td>
                 <td>
                     @{
-                        var serviceStatus = ServiceManager.Web.UiHelpers.EnumHelper<ServiceManager.Common.Models.ServiceStatus>.GetDisplayValue(service.ServiceStatus);
+                        var serviceStatus = EnumHelper<ServiceStatus>.GetDisplayValue(service.ServiceStatus);
                     }
                     @switch (service.ServiceStatus)
                     {
-                        case ServiceManager.Common.Models.ServiceStatus.StartPending:
-                        case ServiceManager.Common.Models.ServiceStatus.Running:
+                        case ServiceStatus.StartPending:
+                        case ServiceStatus.Running:
                             <text>
-                                <span class="tag is-success">
+                                <span class="badge green">
                                     @(serviceStatus)
                                 </span>
                             </text>
                             break;
-                        case ServiceManager.Common.Models.ServiceStatus.StopPending:
-                        case ServiceManager.Common.Models.ServiceStatus.Stopped:
+                        case ServiceStatus.StopPending:
+                        case ServiceStatus.Stopped:
                             <text>
-                                <span class="tag is-danger">
+                                <span class="badge red">
                                     @(serviceStatus)
                                 </span>
                             </text>
                             break;
                         default:
                             <text>
-                                <span class="tag is-warning">
+                                <span class="badge yellow">
                                     @(serviceStatus)
                                 </span>
                             </text>

@@ -22,6 +22,7 @@
     <link href="~/css/header.css" rel="stylesheet" />
     <link href="~/css/form.css" rel="stylesheet" />
     <link href="~/css/table.css" rel="stylesheet" />
+    <link href="~/css/badge.css" rel="stylesheet" />
     <link href="~/css/site.css" rel="stylesheet" />
 </head>
 <body>
@@ -30,7 +31,11 @@
     <header>
         <nav>
             <div class="menu-container">
-                <div class="hero"></div>
+                <div class="hero">
+                    <a href="@Url.Action("Index", "Dashboard")">
+                        <img src="/images/logo.png" />
+                    </a>
+                </div>
                 <div>
                     <ul class="navigation">
                         <li>

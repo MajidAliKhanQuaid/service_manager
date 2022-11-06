@@ -1,0 +1,17 @@
+﻿span.badge {
+    padding: 5px;
+    border-radius: 10px;
+    color: white;
+}
+
+span.red {
+    background-color: red;
+}
+
+span.yellow {
+    background-color: yellow;
+}
+
+span.green {
+    background-color: green;
+}
